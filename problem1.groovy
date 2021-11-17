@@ -22,9 +22,7 @@ def Calculation(ArrayList Sums, int K, ArrayList Muls){
     SumResult = Sums.inject(0d) { sum, val -> sum + val } * K
     MulResult = Muls.inject(1.0d) { prod, val -> prod * val }
     SortedInputs = (Sums + Muls).sort()
-    println(SumResult)
-    println(MulResult)
-    println(SortedInputs)
+
 }
 
 def OutputCreator(Double SumResultIn, Double MulResultIn,ArrayList SortedArraysIn, String format){
@@ -63,7 +61,7 @@ def OutputCreator(Double SumResultIn, Double MulResultIn,ArrayList SortedArraysI
 }
 
 inputFormat = System.in.newReader().readLine()
-//println(inputFormat)
+
 if (inputFormat != "XML" && inputFormat != "Json") {
     println("Enter correct format: XML or Json")
     inputFormat = System.in.newReader().readLine()
@@ -78,9 +76,6 @@ def str = parser.parseText(inputString)
 def coefK = Integer.parseInt(str.K.text())
 def sums = str.Sums.decimal.collect{ it.text() as Double }
 def muls = str.Muls.int.collect(){ it.text() as Double}
-    println(coefK)
-    println(sums.toString())
-    println(muls.toString())
 Calculation(sums, coefK, muls)
     OutputCreator(SumResult, MulResult, SortedInputs, 'XML')
 
@@ -92,9 +87,6 @@ else if (inputFormat == "Json"){
     def coefK = (str.K)
     def sums = str.Sums.collect()
     def muls = str.Muls.collect()
-    println(coefK)
-    println(sums.toString())
-    println(muls.toString())
     Calculation(sums, coefK, muls)
     OutputCreator(SumResult, MulResult, SortedInputs, 'Json')
 }
